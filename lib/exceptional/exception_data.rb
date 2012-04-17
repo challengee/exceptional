@@ -19,6 +19,7 @@ module Exceptional
           'occurred_at' => Time.now.utc.iso8601
         }
       })
+      hash.merge!(@exception.to_params) if @exception.respond_to? :to_params
       hash.merge!(extra_stuff)
       hash.merge!(context_stuff)
       self.class.sanitize_hash(hash)
